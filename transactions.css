@@ -1,0 +1,614 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+     background: #b1c1ed;
+    color:black;
+    font-weight: bolder;
+}
+
+.dashboard-layout {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 250px;
+    background: #171c2e;
+    color: white;
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+}
+
+.logo {
+    font-size: 23px;
+    font-weight: 700;
+    margin-bottom: 45px;
+}
+
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 13px 15px;
+    border-radius: 9px;
+    color: #aeb5c8;
+    text-decoration: none;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    background: #303951;
+    color: white;
+}
+
+.sidebar-bottom {
+    margin-top: auto;
+}
+
+.logout-button {
+    width: 100%;
+    padding: 13px;
+    border: none;
+    border-radius: 9px;
+    background: #303951;
+    color: white;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.logout-button:hover {
+    background: #414d69;
+}
+
+/* Main content */
+.main-content {
+    flex: 1;
+    min-width: 0;
+    padding: 30px 40px;
+}
+#edit {
+    color: #6659d9;
+}
+.topbar {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-bottom: 35px;
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.user-avatar {
+    width: 43px;
+    height: 43px;
+    border-radius: 50%;
+    background: #e8e7ff;
+    color: #6256c9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 700;
+}
+
+.user-name {
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 4px;
+}
+
+.user-profile small {
+    color: #9298a8;
+    font-size: 12px;
+}
+
+/* Page heading */
+.page-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.page-heading h1 {
+    font-size: 27px;
+    margin-bottom: 8px;
+}
+
+.page-heading p {
+    color: #858b9d;
+    font-size: 14px;
+}
+
+.primary-button {
+    padding: 12px 19px;
+    background: #6659d9;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.primary-button:hover {
+    background: #5144bd;
+    transform: translateY(-2px);
+}
+
+/* Summary cards */
+.summary-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.summary-card {
+    background: white;
+    padding: 23px;
+    border-radius: 13px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.035);
+}
+
+.summary-card p {
+    color: #858b9d;
+    font-size: 13px;
+    margin-bottom: 13px;
+}
+
+.summary-card h2 {
+    font-size: 25px;
+    margin-bottom: 8px;
+}
+
+.summary-card small {
+    color: #a0a5b2;
+    font-size: 11px;
+}
+
+/* Transactions section */
+.transactions-section {
+    background: white;
+    padding: 25px;
+    border-radius: 13px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.035);
+}
+
+.section-heading {
+    margin-bottom: 23px;
+}
+
+.section-heading h2 {
+    font-size: 19px;
+    margin-bottom: 7px;
+}
+
+.section-heading p {
+    color: #858b9d;
+    font-size: 13px;
+}
+
+/* Filters */
+.filters-container {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 25px;
+}
+
+.search-box {
+    flex: 1;
+    min-width: 180px;
+}
+
+.search-box input,
+.filters-container select,
+.filters-container input {
+    width: 100%;
+    padding: 11px 12px;
+    border: 1px solid #e3e5ed;
+    border-radius: 7px;
+    outline: none;
+    background: white;
+    color: #303548;
+    font-size: 12px;
+}
+
+.search-box input:focus,
+.filters-container select:focus,
+.filters-container input:focus {
+    border-color: #6659d9;
+}
+
+.filters-container select,
+.filters-container > input {
+    width: auto;
+    min-width: 125px;
+}
+
+.clear-filter-button {
+    padding: 11px 13px;
+    background: #f0efff;
+    color: #6659d9;
+    border: none;
+    border-radius: 7px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+/* Table */
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.transactions-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 700px;
+}
+
+.transactions-table th {
+    text-align: left;
+    padding: 15px 12px;
+    background: #f8f8fc;
+    color: #9298a8;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.transactions-table td {
+    padding: 17px 12px;
+    border-bottom: 1px solid #eff0f5;
+    font-size: 13px;
+}
+
+.transactions-table tbody tr:hover {
+    background: #fafaff;
+}
+
+.transaction-description {
+    font-weight: 600;
+}
+
+.transaction-category {
+    color: #858b9d;
+}
+
+.transaction-type {
+    display: inline-block;
+    padding: 6px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.type-income {
+    background: #e5f8ed;
+    color: #23945a;
+}
+
+.type-expense {
+    background: #ffe9e9;
+    color: #cf4949;
+}
+
+.income-amount {
+    color: #23945a;
+    font-weight: 600;
+}
+
+.expense-amount {
+    color: #cf4949;
+    font-weight: 600;
+}
+
+.delete-button {
+    padding: 7px 10px;
+    background: #fff0f0;
+    color: #d34c4c;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+/* Empty state */
+.empty-state {
+    text-align: center;
+    padding: 55px 20px;
+}
+
+.empty-state[hidden],
+.modal-overlay[hidden],
+.table-container[hidden] {
+    display: none;
+}
+
+.empty-icon {
+    font-size: 40px;
+    color: #6659d9;
+    margin-bottom: 15px;
+}
+
+.empty-state h3 {
+    font-size: 19px;
+    margin-bottom: 9px;
+}
+
+.empty-state p {
+    color: #9298a8;
+    font-size: 13px;
+    margin-bottom: 20px;
+}
+
+/* Modal */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(17, 21, 36, 0.55);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    z-index: 1000;
+}
+
+.transaction-modal {
+    width: 100%;
+    max-width: 480px;
+    max-height: 90vh;
+    overflow-y: auto;
+    background: white;
+    border-radius: 14px;
+    padding: 27px;
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 25px;
+}
+
+.modal-header h2 {
+    font-size: 21px;
+    margin-bottom: 7px;
+}
+
+.modal-header p {
+    color: #9298a8;
+    font-size: 13px;
+}
+
+.close-modal {
+    border: none;
+    background: transparent;
+    font-size: 27px;
+    color: #858b9d;
+    cursor: pointer;
+}
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #e3e5ed;
+    border-radius: 7px;
+    outline: none;
+    font-size: 13px;
+    background: white;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: #6659d9;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 25px;
+}
+
+.cancel-button {
+    padding: 12px 18px;
+    background: #f0f1f5;
+    color: #555b6b;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+/* Responsive design */
+@media (max-width: 1000px) {
+    .main-content {
+        padding: 25px;
+    }
+
+    .filters-container {
+        align-items: stretch;
+    }
+
+    .search-box {
+        flex-basis: 100%;
+    }
+}
+
+@media (max-width: 700px) {
+    .dashboard-layout {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        padding: 18px;
+    }
+
+    .logo {
+        margin-bottom: 18px;
+    }
+
+    .sidebar-nav {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 7px;
+    }
+
+    .nav-link {
+        padding: 10px;
+        font-size: 12px;
+    }
+
+    .sidebar-bottom {
+        margin-top: 15px;
+    }
+
+    .main-content {
+        padding: 20px 15px;
+    }
+
+    .topbar {
+        margin-bottom: 25px;
+    }
+
+    .page-heading {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .summary-grid {
+        grid-template-columns: 1fr;
+        gap: 13px;
+    }
+
+    .transactions-section {
+        padding: 17px;
+    }
+
+    .filters-container > * {
+        flex: 1 1 100%;
+    }
+
+    .filters-container select,
+    .filters-container > input {
+        width: 100%;
+    }
+}
+html.dark-theme body {
+    background: #111827;
+    color: #f1f5f9;
+}
+
+html.dark-theme .main-content {
+    background: #111827;
+    color: #f1f5f9;
+}
+
+html.dark-theme .logo {
+    color: #ffffff;
+}
+
+html.dark-theme .summary-card,
+html.dark-theme .transactions-section,
+html.dark-theme .transaction-modal {
+    background: #1e293b;
+    color: #f1f5f9;
+}
+
+html.dark-theme .summary-card h2,
+html.dark-theme .section-heading h2,
+html.dark-theme .page-heading h1,
+html.dark-theme .empty-state h3,
+html.dark-theme .modal-header h2 {
+    color: #f1f5f9;
+}
+
+html.dark-theme .search-box input,
+html.dark-theme .filters-container select,
+html.dark-theme .filters-container input,
+html.dark-theme .form-group input,
+html.dark-theme .form-group select {
+    background: #273449;
+    color: #f1f5f9;
+    border-color: #475569;
+}
+
+html.dark-theme .transactions-table th {
+    background: #273449;
+    color: #cbd5e1;
+}
+
+html.dark-theme .transactions-table td {
+    border-color: #334155;
+    color: #e2e8f0;
+}
+
+html.dark-theme .transactions-table tbody tr:hover {
+    background: #273449;
+}
+
+html.dark-theme .transaction-category,
+html.dark-theme .page-heading p,
+html.dark-theme .section-heading p,
+html.dark-theme .summary-card p,
+html.dark-theme .summary-card small,
+html.dark-theme .user-profile small,
+html.dark-theme .modal-header p {
+    color: #aab5c5;
+}
+
+html.dark-theme .cancel-button {
+    background: #334155;
+    color: #f1f5f9;
+}
+
+html.dark-theme .close-modal {
+    color: #cbd5e1;
+}
+
+html.dark-theme .sidebar {
+    background: #171c2e;
+}
+
+html.dark-theme .logo {
+    color: #ffffff;
+}

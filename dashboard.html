@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker Dashboard</title>
+    <link rel="stylesheet" href="dashboard.css">
+    <script src="dashboard.js" defer></script>
+    <script>
+
+    const savedTheme = JSON.parse(
+
+        localStorage.getItem("appSettings") || "{}"
+
+    ).theme || "light";
+
+    if (savedTheme === "dark") {
+
+        document.documentElement.classList.add("dark-theme");
+
+    }
+
+</script>
+</head>
+<body>
+        <div class="dashboard">
+
+        <aside class="sidebar">
+
+            <div class="logo">
+
+                <span>ExpenseTracker</span>
+
+            </div>
+
+            <nav class="nav-menu">
+
+                <a href="dashboard.html" class="nav-item active">
+
+                    <span class="nav-icon">⌂</span>
+
+                    <span>Dashboard</span>
+
+                </a>
+
+                <a href="transactions.html" class="nav-item">
+
+                    <span class="nav-icon">▤</span>
+
+                    <span>Transactions</span>
+
+                </a>
+
+                <a href="reports.html" class="nav-item">
+
+                    <span class="nav-icon">▥</span>
+
+                    <span>Reports</span>
+
+                </a>
+
+                <a href="profile.html" class="nav-item">
+
+                    <span class="nav-icon">♙</span>
+
+                    <span>Profile</span>
+
+                </a>
+
+                <a href="settings.html" class="nav-item">
+
+                    <span class="nav-icon">⚙</span>
+
+                    <span>Settings</span>
+
+                </a>
+
+            </nav>
+
+            <div class="sidebar-bottom">
+
+                <a href="#" class="nav-item" id="logoutButton">
+
+                    <span class="nav-icon">⇥</span>
+
+                    <span>Logout</span>
+
+                </a>
+
+            </div>
+
+        </aside>
+
+        <main class="content">
+
+            <header class="top-bar">
+
+                <div class="welcome">
+
+                    <h1>Welcome back!</h1>
+
+                    <p>Here's your spending overview for this month.</p>
+
+                </div>
+
+                <div class="header-right">
+
+                    <button type="button" class="notification" aria-label="Notifications">
+
+                        ♧
+
+                    </button>
+
+                    <div class="avatar"></div>
+
+                </div>
+
+            </header>
+
+            <section class="stats">
+
+                <div class="stat-card balance-card">
+
+                    <div class="stat-icon balance-icon">₦</div>
+
+                    <div class="stat-details">
+
+                        <h2 id="totalBalance">—</h2>
+
+                        <p>Total Balance</p>
+
+                    </div>
+
+                </div>
+
+                <div class="stat-card income-card">
+
+                    <div class="stat-icon income-icon">↑</div>
+
+                    <div class="stat-details">
+
+                        <h2 id="totalIncome">—</h2>
+
+                        <p>Total Income</p>
+
+                    </div>
+
+                </div>
+
+                <div class="stat-card expense-card">
+
+                    <div class="stat-icon expense-icon">↓</div>
+
+                    <div class="stat-details">
+
+                        <h2 id="totalExpenses">—</h2>
+
+                        <p>Total Expenses</p>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+            <section class="overview">
+
+                <div class="panel spending-card">
+
+                    <div class="panel-header">
+
+                        <h2>Spending Overview</h2>
+
+                        <select id="spendingPeriod" aria-label="Spending period">
+
+                            <option value="thisMonth">This Month</option>
+
+                            <option value="lastMonth">Last Month</option>
+
+                            <option value="thisYear">This Year</option>
+
+                        </select>
+
+                    </div>
+
+                    <div class="spending">
+
+                        <div class="chart">
+
+                            <div class="chart-center">
+
+                                <h3 id="totalSpent">—</h3>
+
+                                <p>Spent</p>
+
+                            </div>
+
+                        </div>
+
+                        <div class="chart-key">
+
+                            <div class="key-item">
+
+                                <span class="legend-dot food-dot"></span>
+
+                                <span class="legend-name"></span>
+
+                                <span class="legend-percentage"></span>
+
+                            </div>
+
+                            <div class="key-item">
+
+                                <span class="legend-dot transport-dot"></span>
+
+                                <span class="legend-name"></span>
+
+                                <span class="legend-percentage"></span>
+
+                            </div>
+
+                            <div class="key-item">
+
+                                <span class="legend-dot shopping-dot"></span>
+
+                                <span class="legend-name"></span>
+
+                                <span class="legend-percentage"></span>
+
+                            </div>
+
+                            <div class="key-item">
+
+                                <span class="legend-dot others-dot"></span>
+
+                                <span class="legend-name"></span>
+
+                                <span class="legend-percentage"></span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="panel recent-card">
+
+                    <div class="panel-header">
+
+                        <h2>Recent Transactions</h2>
+
+                        <a href="transactions.html" class="view-all">View All →</a>
+
+                    </div>
+
+                    <div class="transaction-list"></div>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+</body>
+</html>

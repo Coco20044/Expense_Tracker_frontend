@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings | Expense Tracker</title>
+    <link rel="stylesheet" href="settings.css">
+    <script src="settings.js" defer></script>
+</head>
+<body>
+    <div class="dashboard-container">
+
+      
+        <aside class="sidebar">
+
+            <div class="logo">
+
+                <h2>ExpenseTracker</h2>
+
+            </div>
+
+            <nav class="sidebar-nav">
+
+                <a href="dashboard.html" class="nav-link">
+
+                    <span>▦</span> Dashboard
+
+                </a>
+
+                <a href="transactions.html" class="nav-link">
+
+                    <span>⇄</span> Transactions
+
+                </a>
+
+                <a href="reports.html" class="nav-link">
+
+                    <span>▤</span> Reports
+
+                </a>
+
+                <a href="profile.html" class="nav-link">
+
+                    <span>♙</span> Profile
+
+                </a>
+
+                <a href="settings.html" class="nav-link active">
+
+                    <span>⚙</span> Settings
+
+                </a>
+
+            </nav>
+
+            <div class="sidebar-bottom">
+
+                <button id="logoutButton" class="logout-button">
+
+                    <span>↪</span> Logout
+
+                </button>
+
+            </div>
+
+        </aside>
+
+      
+
+        <main class="main-content">
+
+            <header class="topbar">
+
+                <div>
+
+                    <h2>Settings</h2>
+
+                    <p>Manage your application preferences</p>
+
+                </div>
+
+                <div class="topbar-user">
+
+                    <div class="user-avatar" id="userAvatar">U</div>
+
+                    <span id="userName">User</span>
+
+                </div>
+
+            </header>
+
+            
+
+            <section class="settings-content">
+
+                <div class="page-heading">
+
+                    <h1>Application Settings</h1>
+
+                    <p>Customize your ExpenseTrack experience.</p>
+
+                </div>
+
+                <div class="settings-card">
+
+                    <div class="settings-heading">
+
+                        <div class="settings-icon appearance-icon">◐</div>
+
+                        <div>
+
+                            <h2>Appearance</h2>
+
+                            <p>Customize how the application looks.</p>
+
+                        </div>
+
+                    </div>
+
+                    <div class="setting-row">
+
+                        <div class="setting-info">
+
+                            <h3>Theme</h3>
+
+                            <p>Choose your preferred display theme.</p>
+
+                        </div>
+
+                        <select id="themeSelect" class="settings-select">
+
+                            <option value="light">Light Mode</option>
+
+                            <option value="dark">Dark Mode</option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <div class="settings-card">
+
+                    <div class="settings-heading">
+
+                        <div class="settings-icon currency-icon">₦</div>
+
+                        <div>
+
+                            <h2>Currency Preferences</h2>
+
+                            <p>Choose the currency used for displaying amounts.</p>
+
+                        </div>
+
+                    </div>
+
+                    <div class="setting-row">
+
+                        <div class="setting-info">
+
+                            <h3>Default Currency</h3>
+
+                            <p>Select your preferred currency.</p>
+
+                        </div>
+
+                        <select id="currencySelect" class="settings-select">
+
+                            <option value="NGN">Nigerian Naira (₦)</option>
+
+                            <option value="USD">US Dollar ($)</option>
+
+                            <option value="GBP">British Pound (£)</option>
+
+                            <option value="EUR">Euro (€)</option>
+
+                            <option value="CAD">Canadian Dollar ($)</option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+                <div class="settings-card">
+
+                    <div class="settings-heading">
+
+                        <div class="settings-icon notification-icon">♧</div>
+
+                        <div>
+
+                            <h2>Notifications</h2>
+
+                            <p>Manage the notifications you want to receive.</p>
+
+                        </div>
+
+                    </div>
+
+                    <div class="setting-row">
+
+                        <div class="setting-info">
+
+                            <h3>Transaction Notifications</h3>
+
+                            <p>Receive updates when transactions are recorded.</p>
+
+                        </div>
+
+                        <label class="toggle-switch">
+
+                            <input type="checkbox" id="transactionNotifications">
+
+                            <span class="toggle-slider"></span>
+
+                        </label>
+
+                    </div>
+
+                    <div class="setting-row">
+
+                        <div class="setting-info">
+
+                            <h3>Budget Alerts</h3>
+
+                            <p>Get notified when your spending approaches your budget.</p>
+
+                        </div>
+
+                        <label class="toggle-switch">
+
+                            <input type="checkbox" id="budgetNotifications">
+
+                            <span class="toggle-slider"></span>
+
+                        </label>
+
+                    </div>
+
+                </div>
+
+                <div class="settings-card">
+
+                    <div class="settings-heading">
+
+                        <div class="settings-icon privacy-icon">◉</div>
+
+                        <div>
+
+                            <h2>Privacy</h2>
+
+                            <p>Control how your financial information is displayed.</p>
+
+                        </div>
+
+                    </div>
+
+                    <div class="setting-row">
+
+                        <div class="setting-info">
+
+                            <h3>Hide Account Balance</h3>
+
+                            <p>Hide your financial balance from the dashboard.</p>
+
+                        </div>
+
+                        <label class="toggle-switch">
+
+                            <input type="checkbox" id="hideBalance">
+
+                            <span class="toggle-slider"></span>
+
+                        </label>
+
+                    </div>
+
+                </div>
+
+                <div class="settings-card account-settings">
+
+                    <div class="settings-heading">
+
+                        <div class="settings-icon account-icon">♙</div>
+
+                        <div>
+
+                            <h2>Account</h2>
+
+                            <p>Manage your account and session.</p>
+
+                        </div>
+
+                    </div>
+
+                    <div class="setting-row">
+
+                        <div class="setting-info">
+
+                            <h3>Profile Information</h3>
+
+                            <p>Update your personal account information.</p>
+
+                        </div>
+
+                        <a href="profile.html" class="settings-link">
+
+                            Edit Profile →
+
+                        </a>
+
+                    </div>
+
+                    <div class="setting-row">
+
+                        <div class="setting-info">
+
+                            <h3>Log Out</h3>
+
+                            <p>Sign out of your ExpenseTrack account.</p>
+
+                        </div>
+
+                        <button id="settingsLogout" class="logout-action">
+
+                            Log Out
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+               
+
+                <div class="settings-footer">
+
+                    <p id="settingsMessage"></p>
+
+                    <button id="saveSettings" class="save-settings-button">
+
+                        Save Preferences
+
+                    </button>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+</body>
+</html>

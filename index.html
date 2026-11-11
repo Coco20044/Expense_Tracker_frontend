@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Expense Tracker</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <main class="auth-container">
+       
+        <section class="signup-section">
+
+            <div class="brand">
+
+                <span class="brand-icon">◆</span>
+
+                <span>Expense<span class="brand-light">Tracker</span></span>
+
+            </div>
+
+            <div class="signup-content">
+
+                <div class="section-heading">
+
+                    <h1>Create an account</h1>
+
+                    <p>Start managing your finances today.</p>
+
+                </div>
+
+                <form id="signupForm">
+
+                    <div class="form-group">
+
+                        <label for="signupName">Full Name</label>
+
+                        <input
+
+                            type="text"
+
+                            id="signupName"
+
+                            name="name"
+
+                            placeholder="Enter your full name"
+
+                            autocomplete="name"
+
+                            required
+
+                        >
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="signupEmail">Email Address</label>
+
+                        <input
+
+                            type="email"
+
+                            id="signupEmail"
+
+                            name="email"
+
+                            placeholder="Enter your email"
+
+                            autocomplete="email"
+
+                            required
+
+                        >
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="signupPassword">Password</label>
+
+                        <div class="password-wrapper">
+
+                            <input
+
+                                type="password"
+
+                                id="signupPassword"
+
+                                name="password"
+
+                                placeholder="Create a password"
+
+                                autocomplete="new-password"
+
+                                required
+
+                            >
+
+                            <button type="button" class="password-toggle"
+
+                                data-target="signupPassword"
+
+                                aria-label="Show password">
+
+                                <span>Show</span>
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="confirmPassword">Confirm Password</label>
+
+                        <div class="password-wrapper">
+
+                            <input
+
+                                type="password"
+
+                                id="confirmPassword"
+
+                                name="confirmPassword"
+
+                                placeholder="Confirm your password"
+
+                                autocomplete="new-password"
+
+                                required
+
+                            >
+
+                            <button type="button" class="password-toggle"
+
+                                data-target="confirmPassword"
+
+                                aria-label="Show password">
+
+                                <span>Show</span>
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                    <button type="submit" class="primary-button">
+
+                        Create Account
+
+                    </button>
+
+                    <p class="form-message" id="signupMessage" aria-live="polite"></p>
+
+                </form>
+
+                <p class="switch-text">
+
+                    Already have an account?
+
+                    <a href="#login" id="goToLogin">Log in</a>
+
+                </p>
+
+            </div>
+
+            <p class="section-footer">
+
+                Take control of your financial future.
+
+            </p>
+
+        </section>
+
+        
+
+        <section class="login-section" id="login">
+
+            <div class="login-content">
+
+                <div class="section-heading">
+
+                    <h2>Welcome Back! 👋</h2>
+
+                    <p>Login to access your account.</p>
+
+                </div>
+
+                <form id="loginForm">
+
+                    <div class="form-group">
+
+                        <label for="loginEmail">Email Address</label>
+
+                        <input
+
+                            type="email"
+
+                            id="loginEmail"
+
+                            name="login_email"
+
+                            placeholder="Enter your email"
+
+                            autocomplete="off"
+
+                            required
+
+                        >
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="loginPassword">Password</label>
+
+                        <div class="password-wrapper">
+
+                            <input
+
+                                type="password"
+
+                                id="loginPassword"
+
+                                name="login_password"
+
+                                placeholder="Enter your password"
+
+                                autocomplete="new-password"
+
+                                required
+
+                            >
+
+                            <button type="button" class="password-toggle"
+
+                                data-target="loginPassword"
+
+                                aria-label="Show password">
+
+                                <span>Show</span>
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                    <div class="login-options">
+
+                        <label class="remember-me">
+
+                            <input type="checkbox" id="rememberMe">
+
+                            <span>Remember me</span>
+
+                        </label>
+
+                    </div>
+
+                    <button type="submit" class="primary-button">
+
+                        Log In
+
+                    </button>
+
+                    <p class="form-message" id="loginMessage" aria-live="polite"></p>
+
+                </form>
+            </div>
+
+        </section>
+    </main>
+</body>
+</html>
