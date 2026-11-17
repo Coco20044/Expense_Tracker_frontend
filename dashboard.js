@@ -95,6 +95,8 @@ function formatDate(dateString) {
 async function fetchTransactions() {
     const token = getToken();
 
+    if (!token) return false;
+
     const response = await fetch(`${API_BASE_URL}/transactions`, {
         method: "GET",
         headers: {
@@ -104,8 +106,6 @@ async function fetchTransactions() {
     });
 
     if (response.status === 401) {
-        clearSession();
-        window.location.href = "index.html";
         return false;
     }
 
@@ -123,6 +123,8 @@ async function fetchTransactions() {
 async function fetchUser() {
     const token = getToken();
 
+    if (!token) return false;
+
     const response = await fetch(`${API_BASE_URL}/auth/me`, {
         method: "GET",
         headers: {
@@ -132,8 +134,6 @@ async function fetchUser() {
     });
 
     if (response.status === 401) {
-        clearSession();
-        window.location.href = "index.html";
         return false;
     }
 
@@ -442,21 +442,29 @@ if (spendingPeriod) {
 }
 
 async function initializeDashboard() {
+    updateWelcomeName();
+
     const token = getToken();
 
     if (!token) {
-        window.location.href = "index.html";
+        updateDashboard();
         return;
     }
 
     try {
         const userAuthenticated = await fetchUser();
 
-        if (!userAuthenticated) return;
+        if (!userAuthenticated) {
+            updateDashboard();
+            return;
+        }
 
         const transactionsLoaded = await fetchTransactions();
 
-        if (!transactionsLoaded) return;
+        if (!transactionsLoaded) {
+            updateDashboard();
+            return;
+        }
 
         updateDashboard();
 

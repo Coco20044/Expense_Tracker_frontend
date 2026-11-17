@@ -1,6 +1,4 @@
 document.addEventListener("DOMContentLoaded", async () => {
-
-
     const API_BASE_URL = "https://expense-tracker-backend-80ae.onrender.com/api";
 
     function getToken() {
@@ -19,8 +17,11 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     async function apiRequest(endpoint, options = {}) {
-
         const token = getToken();
+
+        if (!token) {
+            throw new Error("Please log in to perform this action.");
+        }
 
         const response = await fetch(`${API_BASE_URL}${endpoint}`, {
             ...options,
@@ -34,8 +35,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         const data = await response.json();
 
         if (response.status === 401) {
-            clearSession();
-            window.location.href = "index.html";
             throw new Error("Your session has expired. Please log in again.");
         }
 
@@ -46,10 +45,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         return data;
     }
 
-    if (!getToken()) {
-        window.location.href = "index.html";
-        return;
-    }
     const transactionsTable = document.getElementById("transactionsTable");
 
     const totalTransactions = document.getElementById("totalTransactions");
@@ -81,6 +76,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const userAvatar = document.getElementById("userAvatar");
 
     async function loadUser() {
+        if (!getToken()) return;
 
         try {
             const data = await apiRequest("/auth/me");
@@ -100,10 +96,10 @@ document.addEventListener("DOMContentLoaded", async () => {
             console.error("Could not load user:", error.message);
         }
     }
+
     let transactions = [];
 
     function formatCurrency(amount) {
-
         return new Intl.NumberFormat("en-NG", {
             style: "currency",
             currency: "NGN",
@@ -112,7 +108,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     function getDateOnly(date) {
-
         if (!date) return "";
 
         if (date instanceof Date) {
@@ -126,9 +121,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         return String(date).slice(0, 10);
     }
 
-
     function formatDate(date) {
-
         const dateOnly = getDateOnly(date);
 
         if (!dateOnly) return "—";
@@ -141,8 +134,8 @@ document.addEventListener("DOMContentLoaded", async () => {
             year: "numeric"
         });
     }
-    function updateSummary() {
 
+    function updateSummary() {
         const income = transactions
             .filter(transaction => transaction.type === "income")
             .reduce((total, transaction) => total + Number(transaction.amount), 0);
@@ -165,7 +158,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     function displayTransactions(list = transactions) {
-
         transactionsTable.innerHTML = "";
 
         if (list.length === 0) {
@@ -178,7 +170,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         emptyState.hidden = true;
 
         list.forEach(transaction => {
-
             const row = document.createElement("tr");
 
             const isIncome = transaction.type === "income";
@@ -231,14 +222,12 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     function filterTransactions() {
-
         const searchValue = searchInput.value.toLowerCase().trim();
         const selectedType = typeFilter.value;
         const selectedCategory = categoryFilter.value;
         const selectedDate = dateFilter.value;
 
         const filteredTransactions = transactions.filter(transaction => {
-
             const description = (transaction.description || "").toLowerCase();
             const category = (transaction.category || "").toLowerCase();
 
@@ -269,13 +258,12 @@ document.addEventListener("DOMContentLoaded", async () => {
         displayTransactions(filteredTransactions);
     }
 
-
     searchInput.addEventListener("input", filterTransactions);
     typeFilter.addEventListener("change", filterTransactions);
     categoryFilter.addEventListener("change", filterTransactions);
     dateFilter.addEventListener("change", filterTransactions);
-    clearFilters.addEventListener("click", () => {
 
+    clearFilters.addEventListener("click", () => {
         searchInput.value = "";
         typeFilter.value = "all";
         categoryFilter.value = "all";
@@ -285,6 +273,11 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
 
     function openTransactionModal() {
+        if (!getToken()) {
+            alert("Please log in to add a transaction.");
+            return;
+        }
+
         modal.hidden = false;
     }
 
@@ -300,15 +293,13 @@ document.addEventListener("DOMContentLoaded", async () => {
     closeModal.addEventListener("click", closeTransactionModal);
     cancelButton.addEventListener("click", closeTransactionModal);
 
-    modal.addEventListener("click", (event) => {
-
+    modal.addEventListener("click", event => {
         if (event.target === modal) {
             closeTransactionModal();
         }
-
     });
-    function getLocalDate() {
 
+    function getLocalDate() {
         const today = new Date();
 
         const year = today.getFullYear();
@@ -319,7 +310,14 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     transactionDate.value = getLocalDate();
+
     async function loadTransactions() {
+        if (!getToken()) {
+            transactions = [];
+            updateSummary();
+            filterTransactions();
+            return;
+        }
 
         try {
             const data = await apiRequest("/transactions");
@@ -331,12 +329,10 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         } catch (error) {
             console.error("Could not load transactions:", error.message);
-            alert(error.message);
         }
     }
 
-    transactionForm.addEventListener("submit", async (event) => {
-
+    transactionForm.addEventListener("submit", async event => {
         event.preventDefault();
 
         const type = document.getElementById("transactionType").value;
@@ -374,7 +370,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         };
 
         try {
-
             await apiRequest("/transactions", {
                 method: "POST",
                 body: JSON.stringify(newTransaction)
@@ -390,12 +385,14 @@ document.addEventListener("DOMContentLoaded", async () => {
             console.error("Adding transaction failed:", error.message);
             alert(error.message);
         }
-
     });
 
-    transactionsTable.addEventListener("click", async (event) => {
-
+    transactionsTable.addEventListener("click", async event => {
         if (event.target.classList.contains("delete-button")) {
+            if (!getToken()) {
+                alert("Please log in to delete a transaction.");
+                return;
+            }
 
             const transactionId = event.target.dataset.id;
 
@@ -406,7 +403,6 @@ document.addEventListener("DOMContentLoaded", async () => {
             if (!confirmed) return;
 
             try {
-
                 await apiRequest(`/transactions/${transactionId}`, {
                     method: "DELETE"
                 });
@@ -420,19 +416,19 @@ document.addEventListener("DOMContentLoaded", async () => {
                 alert(error.message);
             }
         }
-
     });
 
-    logoutButton.addEventListener("click", () => {
+    if (logoutButton) {
+        logoutButton.addEventListener("click", () => {
+            const confirmed = confirm("Are you sure you want to log out?");
 
-        const confirmed = confirm("Are you sure you want to log out?");
+            if (confirmed) {
+                clearSession();
+                window.location.href = "index.html";
+            }
+        });
+    }
 
-        if (confirmed) {
-            clearSession();
-            window.location.href = "index.html";
-        }
-
-    });
     await loadUser();
     await loadTransactions();
 

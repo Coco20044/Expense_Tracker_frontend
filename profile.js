@@ -27,11 +27,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let originalProfile = {};
 
-    if (!token) {
-        window.location.href = "index.html";
-        return;
-    }
-
     function showMessage(message, color) {
         profileMessage.textContent = message;
         profileMessage.style.color = color;
@@ -97,6 +92,11 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     async function loadProfile() {
+        if (!token) {
+            updateProfileDisplay();
+            return;
+        }
+
         try {
             const response = await fetch(`${API_BASE_URL}/auth/me`, {
                 headers: {
@@ -105,14 +105,7 @@ document.addEventListener("DOMContentLoaded", () => {
             });
 
             if (response.status === 401) {
-                localStorage.removeItem("token");
-                sessionStorage.removeItem("token");
-                localStorage.removeItem("user");
-                sessionStorage.removeItem("user");
-                localStorage.removeItem("userName");
-                sessionStorage.removeItem("userName");
-
-                window.location.href = "index.html";
+                updateProfileDisplay();
                 return;
             }
 
@@ -131,6 +124,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     profileForm.addEventListener("submit", async (event) => {
         event.preventDefault();
+
+        if (!token) {
+            showMessage(
+                "Please log in to update your profile.",
+                "var(--red)"
+            );
+            return;
+        }
 
         const firstName = firstNameInput.value.trim();
         const lastName = lastNameInput.value.trim();
@@ -172,14 +173,10 @@ document.addEventListener("DOMContentLoaded", () => {
             });
 
             if (response.status === 401) {
-                localStorage.removeItem("token");
-                sessionStorage.removeItem("token");
-                localStorage.removeItem("user");
-                sessionStorage.removeItem("user");
-                localStorage.removeItem("userName");
-                sessionStorage.removeItem("userName");
-
-                window.location.href = "index.html";
+                showMessage(
+                    "Your session has expired. Please log in again to update your profile.",
+                    "var(--red)"
+                );
                 return;
             }
 
@@ -218,21 +215,23 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 0);
     });
 
-    logoutButton.addEventListener("click", () => {
-        const confirmed = confirm("Are you sure you want to log out?");
+    if (logoutButton) {
+        logoutButton.addEventListener("click", () => {
+            const confirmed = confirm("Are you sure you want to log out?");
 
-        if (confirmed) {
-            localStorage.removeItem("userName");
-            localStorage.removeItem("token");
-            localStorage.removeItem("user");
+            if (confirmed) {
+                localStorage.removeItem("userName");
+                localStorage.removeItem("token");
+                localStorage.removeItem("user");
 
-            sessionStorage.removeItem("userName");
-            sessionStorage.removeItem("token");
-            sessionStorage.removeItem("user");
+                sessionStorage.removeItem("userName");
+                sessionStorage.removeItem("token");
+                sessionStorage.removeItem("user");
 
-            window.location.href = "index.html";
-        }
-    });
+                window.location.href = "index.html";
+            }
+        });
+    }
 
     loadProfile();
 });

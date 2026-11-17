@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-   const API_BASE_URL = "https://expense-tracker-backend-80ae.onrender.com/api";
+    const API_BASE_URL = "https://expense-tracker-backend-80ae.onrender.com/api";
     const reportIncome = document.getElementById("reportIncome");
     const reportExpenses = document.getElementById("reportExpenses");
     const reportBalance = document.getElementById("reportBalance");
@@ -107,6 +107,8 @@ document.addEventListener("DOMContentLoaded", () => {
     async function fetchUser() {
         const token = getToken();
 
+        if (!token) return false;
+
         const response = await fetch(`${API_BASE_URL}/auth/me`, {
             method: "GET",
             headers: {
@@ -116,8 +118,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         if (response.status === 401) {
-            clearSession();
-            window.location.href = "index.html";
             return false;
         }
 
@@ -152,6 +152,8 @@ document.addEventListener("DOMContentLoaded", () => {
     async function fetchTransactions() {
         const token = getToken();
 
+        if (!token) return false;
+
         const response = await fetch(`${API_BASE_URL}/transactions`, {
             method: "GET",
             headers: {
@@ -161,8 +163,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         if (response.status === 401) {
-            clearSession();
-            window.location.href = "index.html";
             return false;
         }
 
@@ -671,10 +671,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     async function initializeReports() {
-        if (!getToken()) {
-            window.location.href = "index.html";
-            return;
-        }
+        updateReport();
+
+        if (!getToken()) return;
 
         try {
             const userAuthenticated = await fetchUser();

@@ -15,7 +15,6 @@ body {
     min-height: 100vh;
 }
 
-/* Sidebar */
 .sidebar {
     width: 250px;
     background: #171c2e;
@@ -26,10 +25,28 @@ body {
     flex-shrink: 0;
 }
 
+.sidebar-header {
+    display: block;
+}
+
 .logo {
     font-size: 23px;
     font-weight: 700;
     margin-bottom: 45px;
+}
+
+.mobile-menu-toggle {
+    display: none;
+}
+
+.menu-toggle-button {
+    display: none;
+}
+
+.mobile-menu {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
 }
 
 .sidebar-nav {
@@ -76,14 +93,12 @@ body {
     background: #414d69;
 }
 
-/* Main content */
 .main-content {
     flex: 1;
     min-width: 0;
     padding: 30px 40px;
 }
 
-/* Topbar */
 .topbar {
     display: flex;
     justify-content: flex-end;
@@ -120,7 +135,6 @@ body {
     font-size: 12px;
 }
 
-/* Page heading */
 .page-heading {
     display: flex;
     justify-content: space-between;
@@ -160,7 +174,6 @@ body {
     transform: translateY(-2px);
 }
 
-/* Report period filter */
 .report-filter {
     display: flex;
     justify-content: space-between;
@@ -200,7 +213,6 @@ body {
     font-size: 12px;
 }
 
-/* Summary cards */
 .summary-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -271,7 +283,6 @@ body {
     font-size: 11px;
 }
 
-/* Charts layout */
 .charts-grid {
     display: grid;
     grid-template-columns: 1.15fr 0.85fr;
@@ -304,7 +315,6 @@ body {
     font-size: 12px;
 }
 
-/* Income vs expenses chart */
 .chart-content {
     min-height: 230px;
     display: flex;
@@ -386,7 +396,6 @@ body {
     background: #f29b72;
 }
 
-/* Donut chart */
 .donut-chart-container {
     display: flex;
     justify-content: center;
@@ -465,7 +474,6 @@ body {
     font-weight: 600;
 }
 
-/* Monthly trends */
 .monthly-trends {
     margin-bottom: 25px;
 }
@@ -512,7 +520,6 @@ body {
     color: #858b9d;
 }
 
-/* Recent activity */
 .recent-activity {
     background: white;
     padding: 25px;
@@ -607,7 +614,6 @@ body {
     font-weight: 600;
 }
 
-/* Empty state */
 .empty-state {
     text-align: center;
     padding: 50px 20px;
@@ -635,7 +641,6 @@ body {
     margin-bottom: 20px;
 }
 
-/* Responsive design */
 @media (max-width: 1150px) {
     .summary-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -654,25 +659,87 @@ body {
     .sidebar {
         width: 100%;
         padding: 18px;
+        position: relative;
+        z-index: 10;
+    }
+
+    .sidebar-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
     }
 
     .logo {
-        margin-bottom: 18px;
+        margin-bottom: 0;
+    }
+
+    .mobile-menu-toggle {
+        display: none;
+    }
+
+    .menu-toggle-button {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 5px;
+        width: 38px;
+        height: 38px;
+        padding: 8px;
+        cursor: pointer;
+        border-radius: 7px;
+        background: #303951;
+    }
+
+    .menu-toggle-button span {
+        display: block;
+        width: 100%;
+        height: 2px;
+        background: white;
+        border-radius: 2px;
+        transition: 0.3s ease;
+    }
+
+    .mobile-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        padding: 10px 18px 18px;
+        background: #171c2e;
+        flex-direction: column;
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+    }
+
+    .mobile-menu-toggle:checked ~ .mobile-menu {
+        display: flex;
     }
 
     .sidebar-nav {
-        flex-direction: row;
-        flex-wrap: wrap;
+        flex-direction: column;
         gap: 7px;
     }
 
     .nav-link {
-        padding: 10px;
-        font-size: 12px;
+        padding: 12px 13px;
+        font-size: 13px;
     }
 
     .sidebar-bottom {
         margin-top: 15px;
+    }
+
+    .mobile-menu-toggle:checked ~ .sidebar-header .menu-toggle-button span:first-child {
+        transform: translateY(7px) rotate(45deg);
+    }
+
+    .mobile-menu-toggle:checked ~ .sidebar-header .menu-toggle-button span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .mobile-menu-toggle:checked ~ .sidebar-header .menu-toggle-button span:last-child {
+        transform: translateY(-7px) rotate(-45deg);
     }
 
     .main-content {
@@ -736,6 +803,7 @@ body {
         height: 110px;
     }
 }
+
 html.dark-theme body {
     background: #111827;
     color: #f1f5f9;

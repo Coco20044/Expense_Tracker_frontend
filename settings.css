@@ -1,7 +1,3 @@
-/* =====================================
-   1. GENERAL RESET
-===================================== */
-
 * {
     margin: 0;
     padding: 0;
@@ -27,20 +23,10 @@ body {
     color: var(--text-dark);
 }
 
-
-/* =====================================
-   2. DASHBOARD LAYOUT
-===================================== */
-
 .dashboard-container {
     display: flex;
     min-height: 100vh;
 }
-
-
-/* =====================================
-   3. SIDEBAR
-===================================== */
 
 .sidebar {
     width: 250px;
@@ -52,17 +38,34 @@ body {
     flex-direction: column;
 }
 
+.sidebar-header {
+    display: block;
+}
+
 .logo {
     font-weight: 700;
     margin-bottom: 45px;
     color: white;
 }
 
+.mobile-menu-toggle {
+    display: none;
+}
+
+.menu-toggle-button {
+    display: none;
+}
+
+.mobile-menu {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
 .sidebar-nav {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    
 }
 
 .nav-link {
@@ -88,21 +91,15 @@ body {
     font-weight: 600;
 }
 
-
-/* =====================================
-   4. MAIN CONTENT
-===================================== */
+.sidebar-bottom {
+    margin-top: auto;
+}
 
 .main-content {
     flex: 1;
     min-width: 0;
     padding: 35px 40px;
 }
-
-
-/* =====================================
-   5. TOPBAR
-===================================== */
 
 .topbar {
     display: flex;
@@ -139,35 +136,25 @@ body {
     font-weight: 700;
 }
 
-
-/* =====================================
-   6. SETTINGS INTRODUCTION
-===================================== */
-
-.settings-intro {
-    margin-bottom: 25px;
+.settings-content {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
 }
 
-.settings-intro h2 {
+.page-heading {
+    margin-bottom: 3px;
+}
+
+.page-heading h1 {
     font-size: 20px;
     margin-bottom: 8px;
 }
 
-.settings-intro p {
+.page-heading p {
     color: var(--text-muted);
     font-size: 14px;
     line-height: 1.6;
-}
-
-
-/* =====================================
-   7. SETTINGS SECTIONS
-===================================== */
-
-.settings-container {
-    display: flex;
-    flex-direction: column;
-    gap: 22px;
 }
 
 .settings-card {
@@ -178,25 +165,60 @@ body {
     box-shadow: var(--shadow);
 }
 
-.settings-card-header {
+.settings-heading {
+    display: flex;
+    align-items: center;
+    gap: 14px;
     margin-bottom: 22px;
 }
 
-.settings-card-header h3 {
+.settings-heading h2 {
     font-size: 16px;
     margin-bottom: 6px;
 }
 
-.settings-card-header p {
+.settings-heading p {
     color: var(--text-muted);
     font-size: 13px;
     line-height: 1.5;
 }
 
+.settings-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 20px;
+    font-weight: 700;
+}
 
-/* =====================================
-   8. SETTING ROWS
-===================================== */
+.appearance-icon {
+    background: #edf3ff;
+    color: var(--blue);
+}
+
+.currency-icon {
+    background: #e5f8ed;
+    color: var(--green);
+}
+
+.notification-icon {
+    background: #fff2df;
+    color: #d28a28;
+}
+
+.privacy-icon {
+    background: #f0eaff;
+    color: #7654c8;
+}
+
+.account-icon {
+    background: #ffe9e9;
+    color: var(--red);
+}
 
 .setting-row {
     display: flex;
@@ -207,11 +229,7 @@ body {
     border-top: 1px solid var(--border);
 }
 
-.setting-row:first-of-type {
-    border-top: none;
-}
-
-.setting-info h4 {
+.setting-info h3 {
     font-size: 14px;
     margin-bottom: 6px;
 }
@@ -222,12 +240,7 @@ body {
     line-height: 1.5;
 }
 
-
-/* =====================================
-   9. SELECT INPUTS
-===================================== */
-
-.setting-select {
+.settings-select {
     width: 190px;
     padding: 11px 13px;
     border: 1px solid var(--border);
@@ -237,16 +250,12 @@ body {
     color: var(--text-dark);
     font-size: 13px;
     cursor: pointer;
+    flex-shrink: 0;
 }
 
-.setting-select:focus {
+.settings-select:focus {
     border-color: var(--blue);
 }
-
-
-/* =====================================
-   10. TOGGLE SWITCHES
-===================================== */
 
 .toggle-switch {
     position: relative;
@@ -290,64 +299,49 @@ body {
     transform: translateX(21px);
 }
 
-
-/* =====================================
-   11. ACCOUNT SETTINGS
-===================================== */
-
-.account-action {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 15px;
-    padding: 16px 0;
-    border-top: 1px solid var(--border);
-}
-
-.account-action:first-of-type {
-    border-top: none;
-}
-
-.account-action h4 {
-    font-size: 14px;
-    margin-bottom: 5px;
-}
-
-.account-action p {
-    font-size: 12px;
-    color: var(--text-muted);
-}
-
-.account-link {
+.settings-link {
     color: var(--blue);
     text-decoration: none;
     font-size: 13px;
     font-weight: 600;
+    flex-shrink: 0;
 }
 
-.account-link:hover {
+.settings-link:hover {
     text-decoration: underline;
 }
 
+.logout-action {
+    padding: 10px 18px;
+    border: 1px solid #f2c7c2;
+    background: #fff0ee;
+    color: var(--red);
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: 7px;
+    cursor: pointer;
+    transition: 0.3s ease;
+    flex-shrink: 0;
+}
 
-/* =====================================
-   12. SAVE BUTTON
-===================================== */
+.logout-action:hover {
+    background: #ffe0dc;
+}
 
 .settings-footer {
     display: flex;
     justify-content: flex-end;
     align-items: center;
     gap: 15px;
-    margin-top: 25px;
+    margin-top: 5px;
 }
 
-.settings-message {
+#settingsMessage {
     font-size: 13px;
     color: var(--green);
 }
 
-.save-settings-btn {
+.save-settings-button {
     background: var(--blue);
     color: var(--white);
     border: none;
@@ -359,17 +353,12 @@ body {
     transition: 0.3s ease;
 }
 
-.save-settings-btn:hover {
+.save-settings-button:hover {
     background: var(--dark-blue);
 }
 
-
-/* =====================================
-   13. LOGOUT BUTTON
-===================================== */
-
 .logout-button {
-    margin-top: auto;
+    width: 100%;
     padding: 13px 15px;
     border: none;
     background: transparent;
@@ -384,11 +373,6 @@ body {
     background: #fff0ee;
 }
 
-
-/* =====================================
-   14. DARK THEME
-===================================== */
-
 body.dark-theme {
     background: #111827;
     color: #f9fafb;
@@ -396,7 +380,7 @@ body.dark-theme {
 
 body.dark-theme .sidebar,
 body.dark-theme .settings-card,
-body.dark-theme .setting-select {
+body.dark-theme .settings-select {
     background: #1f2937;
     color: #f9fafb;
     border-color: #374151;
@@ -413,14 +397,12 @@ body.dark-theme .nav-link:hover {
 }
 
 body.dark-theme .setting-info p,
-body.dark-theme .settings-intro p,
-body.dark-theme .settings-card-header p,
-body.dark-theme .account-action p {
+body.dark-theme .page-heading p,
+body.dark-theme .settings-heading p {
     color: #9ca3af;
 }
 
-body.dark-theme .setting-row,
-body.dark-theme .account-action {
+body.dark-theme .setting-row {
     border-color: #374151;
 }
 
@@ -428,10 +410,21 @@ body.dark-theme .toggle-slider {
     background: #4b5563;
 }
 
+body.dark-theme .settings-heading h2,
+body.dark-theme .setting-info h3,
+body.dark-theme .page-heading h1 {
+    color: #f9fafb;
+}
 
-/* =====================================
-   15. RESPONSIVE DESIGN
-===================================== */
+body.dark-theme .settings-select {
+    border-color: #475569;
+}
+
+body.dark-theme .logout-action {
+    background: #3b2528;
+    border-color: #63383d;
+    color: #fca5a5;
+}
 
 @media (max-width: 1000px) {
     .sidebar {
@@ -444,7 +437,7 @@ body.dark-theme .toggle-slider {
     }
 }
 
-@media (max-width: 700px) {
+@media (max-width: 750px) {
     .dashboard-container {
         flex-direction: column;
     }
@@ -453,24 +446,87 @@ body.dark-theme .toggle-slider {
         width: 100%;
         min-width: 100%;
         padding: 18px;
+        position: relative;
+        z-index: 10;
+    }
+
+    .sidebar-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
     }
 
     .logo {
-        margin-bottom: 18px;
+        margin-bottom: 0;
+    }
+
+    .mobile-menu-toggle {
+        display: none;
+    }
+
+    .menu-toggle-button {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 5px;
+        width: 38px;
+        height: 38px;
+        padding: 8px;
+        cursor: pointer;
+        border-radius: 7px;
+        background: #303951;
+    }
+
+    .menu-toggle-button span {
+        display: block;
+        width: 100%;
+        height: 2px;
+        background: white;
+        border-radius: 2px;
+        transition: 0.3s ease;
+    }
+
+    .mobile-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        padding: 10px 18px 18px;
+        background: #171c2e;
+        flex-direction: column;
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+    }
+
+    .mobile-menu-toggle:checked ~ .mobile-menu {
+        display: flex;
     }
 
     .sidebar-nav {
-        flex-direction: row;
-        flex-wrap: wrap;
+        flex-direction: column;
+        gap: 7px;
     }
 
     .nav-link {
-        padding: 10px;
-        font-size: 12px;
+        padding: 12px 13px;
+        font-size: 13px;
     }
 
-    .logout-button {
+    .sidebar-bottom {
         margin-top: 15px;
+    }
+
+    .mobile-menu-toggle:checked ~ .sidebar-header .menu-toggle-button span:first-child {
+        transform: translateY(7px) rotate(45deg);
+    }
+
+    .mobile-menu-toggle:checked ~ .sidebar-header .menu-toggle-button span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .mobile-menu-toggle:checked ~ .sidebar-header .menu-toggle-button span:last-child {
+        transform: translateY(-7px) rotate(-45deg);
     }
 
     .main-content {
@@ -482,7 +538,7 @@ body.dark-theme .toggle-slider {
         flex-wrap: wrap;
     }
 
-    .topbar h1 {
+    .topbar h2 {
         font-size: 21px;
     }
 
@@ -492,14 +548,13 @@ body.dark-theme .toggle-slider {
 }
 
 @media (max-width: 480px) {
-    .setting-row,
-    .account-action {
+    .setting-row {
         align-items: flex-start;
         flex-direction: column;
         gap: 12px;
     }
 
-    .setting-select {
+    .settings-select {
         width: 100%;
     }
 
@@ -508,7 +563,20 @@ body.dark-theme .toggle-slider {
         flex-direction: column;
     }
 
-    .save-settings-btn {
+    .save-settings-button {
         width: 100%;
+    }
+
+    .settings-link,
+    .logout-action {
+        align-self: flex-start;
+    }
+
+    .topbar {
+        align-items: flex-start;
+    }
+
+    .topbar-user {
+        gap: 8px;
     }
 }

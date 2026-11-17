@@ -19,7 +19,7 @@
 
 body {
     font-family: "Inter", sans-serif;
-   background: #b1c1ed;
+    background: #b1c1ed;
     color: var(--text);
     min-height: 100vh;
 }
@@ -35,15 +35,11 @@ textarea {
     font: inherit;
 }
 
-
-
 .dashboard-container {
     display: flex;
     min-height: 100vh;
     width: 100%;
 }
-
-
 
 .sidebar {
     width: 250px;
@@ -56,6 +52,10 @@ textarea {
     flex-shrink: 0;
 }
 
+.sidebar-header {
+    display: block;
+}
+
 .logo {
     margin-bottom: 55px;
 }
@@ -64,6 +64,18 @@ textarea {
     font-size: 19px;
     font-weight: 700;
 }
+
+.mobile-menu-toggle,
+.menu-toggle-button {
+    display: none;
+}
+
+.mobile-menu {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
 .sidebar-nav {
     display: flex;
     flex-direction: column;
@@ -118,19 +130,11 @@ textarea {
     color: var(--white);
 }
 
-/* =====================================
-   4. MAIN CONTENT
-===================================== */
-
 .main-content {
     flex: 1;
     min-width: 0;
     padding: 35px 40px;
 }
-
-/* =====================================
-   5. TOPBAR
-===================================== */
 
 .topbar {
     display: flex;
@@ -172,10 +176,6 @@ textarea {
     font-weight: 700;
 }
 
-/* =====================================
-   6. PROFILE CONTENT
-===================================== */
-
 .profile-content {
     width: 100%;
     max-width: 1100px;
@@ -196,10 +196,6 @@ textarea {
     font-size: 14px;
 }
 
-/* =====================================
-   7. PROFILE CARDS
-===================================== */
-
 .card {
     background: var(--white);
     border: 1px solid var(--border);
@@ -208,10 +204,6 @@ textarea {
     box-shadow: 0 3px 12px rgba(20, 40, 80, 0.03);
     margin-bottom: 22px;
 }
-
-/* =====================================
-   8. PROFILE OVERVIEW
-===================================== */
 
 .profile-overview {
     display: flex;
@@ -254,10 +246,6 @@ textarea {
     font-size: 11px;
     font-weight: 600;
 }
-
-/* =====================================
-   9. PROFILE FORM
-===================================== */
 
 .section-heading {
     margin-bottom: 25px;
@@ -326,10 +314,6 @@ textarea {
     box-shadow: 0 0 0 3px rgba(23, 89, 232, 0.08);
 }
 
-/* =====================================
-   10. FORM BUTTONS
-===================================== */
-
 .form-actions {
     display: flex;
     justify-content: flex-end;
@@ -373,10 +357,6 @@ textarea {
     font-weight: 500;
 }
 
-/* =====================================
-   11. ACCOUNT INFORMATION
-===================================== */
-
 .account-info-card h2 {
     font-size: 17px;
     font-weight: 700;
@@ -416,12 +396,7 @@ textarea {
     font-weight: 600;
 }
 
-/* =====================================
-   12. TABLET RESPONSIVENESS
-===================================== */
-
 @media (max-width: 1100px) {
-
     .sidebar {
         width: 220px;
         min-width: 220px;
@@ -432,12 +407,7 @@ textarea {
     }
 }
 
-/* =====================================
-   13. MOBILE RESPONSIVENESS
-===================================== */
-
 @media (max-width: 750px) {
-
     .dashboard-container {
         flex-direction: column;
     }
@@ -447,32 +417,100 @@ textarea {
         min-width: 100%;
         min-height: auto;
         padding: 16px 20px;
+        position: relative;
+        z-index: 10;
+    }
+
+    .sidebar-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
     }
 
     .logo {
-        margin-bottom: 18px;
+        margin-bottom: 0;
+    }
+
+    .mobile-menu-toggle {
+        display: none;
+    }
+
+    .menu-toggle-button {
+        display: flex;
+        width: 42px;
+        height: 42px;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+        cursor: pointer;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 9px;
+        background: rgba(255, 255, 255, 0.08);
+    }
+
+    .menu-toggle-button span {
+        display: block;
+        width: 20px;
+        height: 2px;
+        border-radius: 2px;
+        background: #ffffff;
+        transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    .mobile-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        width: 100%;
+        padding: 12px 20px 18px;
+        background: #171c2e;
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .mobile-menu-toggle:checked ~ .mobile-menu {
+        display: flex;
     }
 
     .sidebar-nav {
-        flex-direction: row;
-        gap: 8px;
-        overflow-x: auto;
-        padding-bottom: 5px;
+        flex-direction: column;
+        gap: 7px;
+        overflow: visible;
+        padding-bottom: 0;
     }
 
     .nav-link {
-        flex-shrink: 0;
-        padding: 10px 12px;
-        font-size: 12px;
+        flex-shrink: 1;
+        padding: 12px 14px;
+        font-size: 14px;
     }
 
     .nav-link span {
-        font-size: 16px;
-        width: auto;
+        font-size: 18px;
+        width: 22px;
     }
 
     .sidebar-bottom {
-        display: none;
+        display: block;
+        margin-top: 10px;
+        padding-top: 10px;
+        border-top: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .mobile-menu-toggle:checked ~ .sidebar-header .menu-toggle-button span:first-child {
+        transform: translateY(7px) rotate(45deg);
+    }
+
+    .mobile-menu-toggle:checked ~ .sidebar-header .menu-toggle-button span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .mobile-menu-toggle:checked ~ .sidebar-header .menu-toggle-button span:last-child {
+        transform: translateY(-7px) rotate(-45deg);
     }
 
     .main-content {
@@ -497,12 +535,7 @@ textarea {
     }
 }
 
-/* =====================================
-   14. SMALL MOBILE SCREENS
-===================================== */
-
 @media (max-width: 420px) {
-
     .main-content {
         padding: 20px 13px;
     }
@@ -559,6 +592,7 @@ textarea {
         width: 100%;
     }
 }
+
 html.dark-theme body {
     background: #111827;
     color: #f1f5f9;
